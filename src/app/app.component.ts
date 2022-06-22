@@ -10,9 +10,12 @@ import { ProcessedLoanData } from './models/processed-loan-data';
 })
 export class AppComponent implements OnInit {
   loansData!: ProcessedLoanData[];
+  totalAvailableAmount!: string;
+
   constructor(private loansDataService: LoandsDataService) {}
 
   ngOnInit() {
     this.loansData = this.loansDataService.getLoansData();
+    this.totalAvailableAmount = this.loansDataService.getTotalAvailableAmount();
   }
 }

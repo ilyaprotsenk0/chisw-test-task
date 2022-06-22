@@ -65,13 +65,27 @@ export class LoandsDataService {
   }
 
   getTotalAvailableAmount(): string {
-    let result = 0;
+    const temp = this.processedLoansData.map((loanData) => {
+      return loanData.available.split(',');
+    });
 
-    for (let i = 0; i < this.processedLoansData.length; i++) {
-      let availableStr = this.processedLoansData[i].available;
-      result += Number(availableStr.replace(',', ''));
+    let beforeComa = 0;
+    let afterComa = 0;
+
+    for (let i = 0; i < temp.length; i++) {
+      let beforeComaTemp = Number(temp[i][0]);
+      let afterComaTemp = Number(temp[i][1]);
+
+      beforeComa += beforeComaTemp;
+      afterComa += afterComaTemp;
+
+      if (afterComa > 1000) {
+        beforeComa += 1;
+        afterComa = afterComa % 1000;
+      }
     }
 
-    return String(result.toFixed(3)).replace('.', ',');
+    console.log([beforeComa, afterComa].join(','));
+    return [beforeComa, afterComa].join(',');
   }
 }
