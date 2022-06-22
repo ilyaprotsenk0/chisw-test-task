@@ -1,7 +1,7 @@
-<div class="card" style="width: 18rem">
+<div class="card py-1 px-1" style="width: 36rem">
   <div class="card-body">
     <h5 class="card-title">Loan name {{ id }}</h5>
     <p class="card-text">{{ title }}</p>
-    <button class="btn btn-dark">Invest</button>
+    <button class="btn btn-dark" (click)="setSelectedLoanId(id)">Invest</button>
   </div>
 </div>

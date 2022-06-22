@@ -4,8 +4,14 @@
   </nav>
   <section>
     <ng-container *ngFor="let loan of loansData">
-      <app-loan [id]="loan.id" [title]="loan.title"></app-loan>
+      <app-loan [id]="loan.id" [title]="loan.title" class="loan"></app-loan>
     </ng-container>
   </section>
   <p>Total amount available for investment: {{ totalAvailableAmount }}</p>
 </div>
+
+<ng-container *ngIf="selectedLoan">
+  <div class="modal-background">
+    <app-invest-form class="invest-form"></app-invest-form>
+  </div>
+</ng-container>

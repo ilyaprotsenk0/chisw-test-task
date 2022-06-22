@@ -1,0 +1,13 @@
+:host {
+  display: block;
+}
+
+.card {
+  padding: 48px 36px;
+}
+
+.close-modal {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+}

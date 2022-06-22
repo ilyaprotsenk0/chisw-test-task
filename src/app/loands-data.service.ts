@@ -40,6 +40,8 @@ export class LoandsDataService {
 
   private processedLoansData!: ProcessedLoanData[];
 
+  selectedId!: number | null;
+
   private processLoansData(arr: LoanData[]): ProcessedLoanData[] {
     return arr.map((singleLoanData: LoanData) => {
       return {
@@ -58,7 +60,7 @@ export class LoandsDataService {
     return this.processedLoansData;
   }
 
-  getLoanDataById(id: number): ProcessedLoanData | undefined {
+  getLoanDataById(id: number | null): any {
     return this.getLoansData().find((item: ProcessedLoanData) => {
       return item.id === id;
     });

@@ -1,0 +1,16 @@
+<div class="card" style="width: 28rem">
+  <div class="card-body">
+    <h4 class="card-title">Invest in loan</h4>
+    <p class="card-text">{{ loanData.title }}</p>
+    <p class="card-text">
+      Amounts available: ${{ loanData.available }}<br />
+      Loan ends in: {{ loanData.term_remaining }}
+    </p>
+    <h5 class="pt-3">Investment amount</h5>
+    <input type="number" />
+    <button class="btn btn-light">Invest</button>
+    <button class="btn btn-dark close-modal" (click)="hideInvestForm(null)">
+      Close
+    </button>
+  </div>
+</div>
