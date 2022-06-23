@@ -30,7 +30,12 @@ export class InvestFormComponent implements OnInit, DoCheck {
   }
 
   preventTypingArithmeticOperations(event: KeyboardEvent) {
-    if (event.key === '+' || event.key === '-' || event.key === 'e') {
+    if (
+      event.key === '+' ||
+      event.key === '-' ||
+      event.key === 'e' ||
+      event.key === '.'
+    ) {
       return false;
     }
     return true;
