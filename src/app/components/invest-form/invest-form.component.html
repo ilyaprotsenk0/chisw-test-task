@@ -10,7 +10,7 @@
     <h4 class="card-title">Invest in loan</h4>
     <p class="card-text">{{ loanData!.title }}</p>
     <p class="card-text">
-      Amounts available: ${{ loanData!.available | ttc }}<br />
+      Amounts available: ${{ loanData!.available | dtc }}<br />
       Loan ends in: {{ loanData!.term_remaining | mdfs }}
     </p>
     <h5 class="pt-3">Investment amount</h5>
@@ -21,7 +21,7 @@
           #investInput
           type="number"
           min="0"
-          step="1"
+          step="0.001"
           (keydown)="preventTypingArithmeticOperations($event)"
           (paste)="preventPaste($event)"
         />
@@ -36,7 +36,7 @@
       </div>
     </div>
     <span class="error-message" *ngIf="!isAmountCorrect"
-      >Investment amount can't be more than available</span
+      >Investment amount can't be more than available or empty</span
     >
   </div>
 </div>

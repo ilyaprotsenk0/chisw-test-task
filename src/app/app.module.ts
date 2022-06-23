@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { LoanComponent } from './components/loan/loan.component';
 import { InvestFormComponent } from './components/invest-form/invest-form.component';
 import { MonthsDaysFromSecondsPipe } from './pipes/months-days-from-seconds.pipe';
-import { ThousandsThoughtCommaPipe } from './pipes/thousands-thought-comma';
+import { DotToCommaPipe } from './pipes/dot-to-comma.pipe';
 
 @NgModule({
   declarations: [
@@ -13,7 +13,7 @@ import { ThousandsThoughtCommaPipe } from './pipes/thousands-thought-comma';
     LoanComponent,
     InvestFormComponent,
     MonthsDaysFromSecondsPipe,
-    ThousandsThoughtCommaPipe,
+    DotToCommaPipe,
   ],
   imports: [BrowserModule],
   providers: [],

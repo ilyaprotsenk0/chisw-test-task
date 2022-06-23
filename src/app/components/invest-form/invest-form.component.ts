@@ -30,12 +30,7 @@ export class InvestFormComponent implements OnInit, DoCheck {
   }
 
   preventTypingArithmeticOperations(event: KeyboardEvent) {
-    if (
-      event.key === '+' ||
-      event.key === '-' ||
-      event.key === '.' ||
-      event.key === 'e'
-    ) {
+    if (event.key === '+' || event.key === '-' || event.key === 'e') {
       return false;
     }
     return true;
@@ -46,8 +41,12 @@ export class InvestFormComponent implements OnInit, DoCheck {
   }
 
   investToLoan(investInputValue: string) {
-    if (Number(investInputValue) > this.loanData!.available) {
-      this.isAmountCorrect = !this.isAmountCorrect;
+    if (
+      !investInputValue ||
+      investInputValue === '0' ||
+      Number(investInputValue) > this.loanData!.available
+    ) {
+      this.isAmountCorrect = false;
     } else {
       this.loandsDataService.investToLoan(this.loanData!.id, investInputValue);
       this.hideInvestForm();

@@ -16,7 +16,7 @@ export class LoandsDataService {
   });
 
   private parseAvailableToNumber(available: string): number {
-    return Number(available.replace(',', ''));
+    return Number(available.replace(',', '.'));
   }
 
   getLoansData(): Array<LoanData> {
@@ -36,19 +36,22 @@ export class LoandsDataService {
   }
 
   getTotalAvailableAmount(): number {
-    return this.loansData
-      .map((item) => {
-        return item.available;
-      })
-      .reduce((accumulator, current) => {
-        return accumulator + current;
-      });
+    return Number(
+      this.loansData
+        .map((item) => {
+          return item.available;
+        })
+        .reduce((accumulator, current) => {
+          return accumulator + current;
+        })
+        .toFixed(3)
+    );
   }
 
   investToLoan(id: number, amount: string) {
     for (let item of this.loansData) {
       if (item.id === id) {
-        item.available = item.available - Number(amount);
+        item.available = Number((item.available - Number(amount)).toFixed(3));
         item.isInvested = true;
       }
     }
