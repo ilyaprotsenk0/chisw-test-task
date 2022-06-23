@@ -3,7 +3,7 @@
 }
 
 .invested-indicator {
-  color: #51a571;
+  color: var(--invest-green);
   position: absolute;
   top: 4px;
   right: 16px;

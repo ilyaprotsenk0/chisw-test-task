@@ -1,8 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
 
+:root {
+  --invest-black: #1a1a1acc;
+  --invest-gray: #3032471a;
+  --invest-yellow: #f6e308;
+  --invest-green: #51a571;
+}
+
 .btn-invest {
-  background-color: #f6e308;
+  background-color: var(--invest-yellow);
   text-transform: uppercase;
   font-family: inherit;
   font-weight: 400;

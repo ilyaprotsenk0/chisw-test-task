@@ -1,9 +1,9 @@
 .navbar {
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid var(--invest-gray);
 }
 
 .modal-background {
-  background-color: rgb(0, 0, 0, 0.5);
+  background-color: var(--invest-black);
   position: absolute;
   top: 0;
   left: 0;
