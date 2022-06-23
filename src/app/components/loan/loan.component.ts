@@ -14,7 +14,6 @@ export class LoanComponent implements OnInit {
   ngOnInit(): void {}
 
   setSelectedLoanId(id: number) {
-    console.log(id);
     this.loandsDataService.selectedId = id;
   }
 }

@@ -3,10 +3,10 @@
 }
 
 .card {
-  padding: 48px 36px;
+  padding: 36px 36px;
 }
 
-.close-modal {
+.close {
   position: absolute;
   right: 16px;
   top: 16px;

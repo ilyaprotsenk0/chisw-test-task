@@ -1,16 +1,31 @@
 <div class="card" style="width: 28rem">
   <div class="card-body">
+    <button
+      type="button"
+      class="btn btn-white close"
+      style="width: 2rem"
+      (click)="hideInvestForm()"
+    >
+      <span>&times;</span>
+    </button>
     <h4 class="card-title">Invest in loan</h4>
-    <p class="card-text">{{ loanData.title }}</p>
+    <p class="card-text">{{ loanData?.title }}</p>
     <p class="card-text">
-      Amounts available: ${{ loanData.available }}<br />
-      Loan ends in: {{ loanData.term_remaining }}
+      Amounts available: ${{ loanData?.available }}<br />
+      Loan ends in: {{ loanData?.term_remaining }}
     </p>
     <h5 class="pt-3">Investment amount</h5>
-    <input type="number" />
-    <button class="btn btn-light">Invest</button>
-    <button class="btn btn-dark close-modal" (click)="hideInvestForm(null)">
-      Close
-    </button>
+    <div>
+      <input
+        #amountInput
+        type="number"
+        min="0"
+        step="1"
+        (keydown)="preventTypingArithmeticOperations($event)"
+        (paste)="preventPaste($event)"
+      />
+      <button type="button" class="btn btn-light">Invest</button>
+    </div>
+    <span *ngIf="!isAmountCorrect">Amount can't be more than available</span>
   </div>
 </div>

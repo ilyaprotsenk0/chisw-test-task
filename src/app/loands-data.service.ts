@@ -1,93 +1,55 @@
 import { Injectable } from '@angular/core';
 import { LoanData } from './models/loan-data';
-import { ProcessedLoanData } from './models/processed-loan-data';
 
 @Injectable()
 export class LoandsDataService {
-  private loansData: LoanData[] = [
-    {
-      id: 1,
-      title: 'Voluptate et sed tempora qui quisquam.',
-      tranche: 'A',
-      available: '11,959',
-      annualised_return: 8.6,
-      term_remaining: 864000,
-      ltv: 48.8,
-      amount: '85,754',
-    },
-    {
-      id: 5,
-      title: 'Consectetur ipsam qui magnam minus dolore ut fugit.',
-      tranche: 'B',
-      available: '31,405',
-      annualised_return: 7.1,
-      term_remaining: 1620000,
-      ltv: 48.8,
-      amount: '85,754',
-    },
-    {
-      id: 12,
-      title:
-        'Dolores repudiandae ut voluptas unde laborum quaerat et sapiente.',
-      tranche: 'C',
-      available: '12,359',
-      annualised_return: 4.8,
-      term_remaining: 879000,
-      ltv: 48.8,
-      amount: '85,754',
-    },
-  ];
-
-  private processedLoansData!: ProcessedLoanData[];
-
   selectedId!: number | null;
+  private currentLoans: Array<any> = require('./current-loans.json').loans;
+  private loansData: Array<LoanData> = this.currentLoans.map((item) => {
+    return {
+      id: Number(item.id),
+      title: item.title,
+      available: this.parseAvailableToNumber(item.available),
+      term_remaining: Number(item.term_remaining),
+      isInvested: false,
+    };
+  });
 
-  private processLoansData(arr: LoanData[]): ProcessedLoanData[] {
-    return arr.map((singleLoanData: LoanData) => {
-      return {
-        id: singleLoanData.id,
-        title: singleLoanData.title,
-        available: singleLoanData.available,
-        amount: singleLoanData.amount,
-        term_remaining: singleLoanData.term_remaining,
-        isInvested: false,
-      };
-    });
+  private parseAvailableToNumber(available: string): number {
+    return Number(available.replace(',', ''));
   }
 
-  getLoansData(): ProcessedLoanData[] {
-    this.processedLoansData = this.processLoansData(this.loansData);
-    return this.processedLoansData;
+  getLoansData(): Array<LoanData> {
+    return this.loansData;
   }
 
-  getLoanDataById(id: number | null): any {
-    return this.getLoansData().find((item: ProcessedLoanData) => {
-      return item.id === id;
-    });
-  }
+  getLoanDataById(id: number | null): LoanData | null {
+    let result = null;
 
-  getTotalAvailableAmount(): string {
-    const temp = this.processedLoansData.map((loanData) => {
-      return loanData.available.split(',');
-    });
-
-    let beforeComa = 0;
-    let afterComa = 0;
-
-    for (let i = 0; i < temp.length; i++) {
-      let beforeComaTemp = Number(temp[i][0]);
-      let afterComaTemp = Number(temp[i][1]);
-
-      beforeComa += beforeComaTemp;
-      afterComa += afterComaTemp;
-
-      if (afterComa > 1000) {
-        beforeComa += 1;
-        afterComa = afterComa % 1000;
+    for (let item of this.loansData) {
+      if (item.id === id) {
+        result = item;
       }
     }
 
-    console.log([beforeComa, afterComa].join(','));
-    return [beforeComa, afterComa].join(',');
+    return result;
+  }
+
+  getTotalAvailableAmount(): number {
+    return this.loansData
+      .map((item) => {
+        return item.available;
+      })
+      .reduce((accumulator, current) => {
+        return accumulator + current;
+      });
+  }
+
+  changeAvailableByLoanId(id: number, amount: string) {
+    for (let item of this.loansData) {
+      if (item.id === id) {
+        item.available = Number(amount);
+      }
+    }
   }
 }

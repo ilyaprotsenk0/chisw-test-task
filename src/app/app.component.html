@@ -7,7 +7,9 @@
       <app-loan [id]="loan.id" [title]="loan.title" class="loan"></app-loan>
     </ng-container>
   </section>
-  <p>Total amount available for investment: {{ totalAvailableAmount }}</p>
+  <h6 class="total-amount-text">
+    Total amount available for investment: ${{ totalAvailableAmount }}
+  </h6>
 </div>
 
 <ng-container *ngIf="selectedLoan">
