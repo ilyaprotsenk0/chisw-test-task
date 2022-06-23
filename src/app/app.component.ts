@@ -22,6 +22,7 @@ export class AppComponent implements OnInit, DoCheck {
 
   ngDoCheck(): void {
     this.selectedLoan = this.loansDataService.selectedId;
+    this.loansData = this.loansDataService.getLoansData();
     this.totalAvailableAmount = this.loansDataService.getTotalAvailableAmount();
   }
 }

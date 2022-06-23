@@ -9,6 +9,7 @@ import { LoandsDataService } from 'src/app/loands-data.service';
 export class LoanComponent implements OnInit {
   @Input() id!: number;
   @Input() title!: string;
+  @Input() isInvested!: boolean;
 
   constructor(private loandsDataService: LoandsDataService) {}
   ngOnInit(): void {}

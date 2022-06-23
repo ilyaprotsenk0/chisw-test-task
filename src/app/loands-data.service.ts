@@ -45,10 +45,11 @@ export class LoandsDataService {
       });
   }
 
-  changeAvailableByLoanId(id: number, amount: string) {
+  investToLoan(id: number, amount: string) {
     for (let item of this.loansData) {
       if (item.id === id) {
-        item.available = Number(amount);
+        item.available = item.available - Number(amount);
+        item.isInvested = true;
       }
     }
   }

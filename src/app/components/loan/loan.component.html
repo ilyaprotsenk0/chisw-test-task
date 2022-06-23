@@ -1,7 +1,16 @@
 <div class="card py-1 px-1" style="width: 36rem">
   <div class="card-body">
-    <h5 class="card-title">Loan name {{ id }}</h5>
-    <p class="card-text">{{ title }}</p>
-    <button class="btn btn-dark" (click)="setSelectedLoanId(id)">Invest</button>
+    <div class="row">
+      <div class="col-10">
+        <h5 class="card-title">Loan name {{ id }}</h5>
+        <p class="card-text">{{ title }}</p>
+      </div>
+      <div class="col-2 d-flex align-items-center justify-content-center">
+        <div class="invested-indicator" *ngIf="isInvested">Invested</div>
+        <button class="btn btn-invest" (click)="setSelectedLoanId(id)">
+          Invest
+        </button>
+      </div>
+    </div>
   </div>
 </div>

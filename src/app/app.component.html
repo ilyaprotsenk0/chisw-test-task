@@ -4,16 +4,21 @@
   </nav>
   <section>
     <ng-container *ngFor="let loan of loansData">
-      <app-loan [id]="loan.id" [title]="loan.title" class="loan"></app-loan>
+      <app-loan
+        [id]="loan.id"
+        [title]="loan.title"
+        [isInvested]="loan.isInvested"
+        class="loan my-2"
+      ></app-loan>
     </ng-container>
   </section>
   <h6 class="total-amount-text">
-    Total amount available for investment: ${{ totalAvailableAmount }}
+    Total amount available for investment: ${{ totalAvailableAmount | ttc }}
   </h6>
 </div>
 
 <ng-container *ngIf="selectedLoan">
   <div class="modal-background">
-    <app-invest-form class="invest-form"></app-invest-form>
+    <app-invest-form class="modal-content"></app-invest-form>
   </div>
 </ng-container>

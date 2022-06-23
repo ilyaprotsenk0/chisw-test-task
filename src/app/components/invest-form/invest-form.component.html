@@ -1,31 +1,42 @@
-<div class="card" style="width: 28rem">
+<div class="card">
   <div class="card-body">
     <button
       type="button"
       class="btn btn-white close"
-      style="width: 2rem"
       (click)="hideInvestForm()"
     >
-      <span>&times;</span>
+      <img src="assets/close-icon.png" alt="Close modal window icon" />
     </button>
     <h4 class="card-title">Invest in loan</h4>
-    <p class="card-text">{{ loanData?.title }}</p>
+    <p class="card-text">{{ loanData!.title }}</p>
     <p class="card-text">
-      Amounts available: ${{ loanData?.available }}<br />
-      Loan ends in: {{ loanData?.term_remaining }}
+      Amounts available: ${{ loanData!.available | ttc }}<br />
+      Loan ends in: {{ loanData!.term_remaining | mdfs }}
     </p>
     <h5 class="pt-3">Investment amount</h5>
-    <div>
-      <input
-        #amountInput
-        type="number"
-        min="0"
-        step="1"
-        (keydown)="preventTypingArithmeticOperations($event)"
-        (paste)="preventPaste($event)"
-      />
-      <button type="button" class="btn btn-light">Invest</button>
+    <div class="row d-flex align-items-center">
+      <div class="col-9">
+        <input
+          class="input-invest"
+          #investInput
+          type="number"
+          min="0"
+          step="1"
+          (keydown)="preventTypingArithmeticOperations($event)"
+          (paste)="preventPaste($event)"
+        />
+      </div>
+      <div class="col-3">
+        <button
+          class="btn btn-invest"
+          (click)="investToLoan(investInput.value)"
+        >
+          Invest
+        </button>
+      </div>
     </div>
-    <span *ngIf="!isAmountCorrect">Amount can't be more than available</span>
+    <span class="error-message" *ngIf="!isAmountCorrect"
+      >Investment amount can't be more than available</span
+    >
   </div>
 </div>

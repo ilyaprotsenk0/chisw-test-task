@@ -1,4 +1,3 @@
-import { ParsedEventType } from '@angular/compiler';
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { LoandsDataService } from 'src/app/loands-data.service';
 import { LoanData } from 'src/app/models/loan-data';
@@ -46,24 +45,12 @@ export class InvestFormComponent implements OnInit, DoCheck {
     return event.preventDefault();
   }
 
-  // recalculateLoan(id: number, amountValue: string): void {
-  //   const available = Number(this.loanData!.available.replace(',', ''));
-  //   const result = available - Number(amountValue);
-
-  //   if (result >= 0) {
-  //     let temp = result / 1000;
-  //     if (temp >= 1) {
-  //       this.loandsDataService.changeAvailableByLoanId(
-  //         id,
-  //         String(temp).replace('.', ',')
-  //       );
-  //     } else {
-  //       this.loandsDataService.changeAvailableByLoanId(id, String(result));
-  //     }
-
-  //     this.hideInvestForm();
-  //   }
-
-  //   this.isAmountCorrect = false;
-  // }
+  investToLoan(investInputValue: string) {
+    if (Number(investInputValue) > this.loanData!.available) {
+      this.isAmountCorrect = !this.isAmountCorrect;
+    } else {
+      this.loandsDataService.investToLoan(this.loanData!.id, investInputValue);
+      this.hideInvestForm();
+    }
+  }
 }

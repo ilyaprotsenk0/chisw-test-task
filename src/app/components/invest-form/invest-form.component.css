@@ -3,11 +3,27 @@
 }
 
 .card {
-  padding: 36px 36px;
+  width: 28rem;
+  padding: 36px;
 }
 
 .close {
   position: absolute;
-  right: 16px;
-  top: 16px;
+  right: 4px;
+  top: 8px;
+}
+
+.close img {
+  width: 24px;
+}
+
+.input-invest {
+  display: block;
+  width: 100%;
+  margin-right: 16px;
+}
+
+.error-message {
+  color: red;
+  font-weight: 500;
 }
